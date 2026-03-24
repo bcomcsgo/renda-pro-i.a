@@ -6,59 +6,89 @@
     <title>Área de Membros - Renda-Pro IA</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f7f6; color: #333; line-height: 1.6; }
-        .sidebar { width: 250px; height: 100vh; background: #2c3e50; color: white; position: fixed; padding: 20px; overflow-y: auto; }
-        .main-content { margin-left: 250px; padding: 40px; }
-        .module { margin-bottom: 20px; }
-        .module-title { font-size: 18px; font-weight: bold; margin-bottom: 10px; cursor: pointer; display: flex; align-items: center; }
-        .module-title:hover { color: #3498db; }
-        .lesson-list { list-style: none; margin-left: 15px; display: none; }
+        body { font-family: 'Inter', -apple-system, sans-serif; background-color: #0f172a; color: #e2e8f0; line-height: 1.6; }
+        .sidebar { width: 280px; height: 100vh; background: #1e293b; border-right: 1px solid #334155; position: fixed; padding: 25px; overflow-y: auto; }
+        .main-content { margin-left: 280px; padding: 50px; max-width: 1000px; }
+        .logo { font-size: 24px; font-weight: 800; color: #38bdf8; margin-bottom: 40px; letter-spacing: -1px; }
+        .module { margin-bottom: 25px; }
+        .module-title { font-size: 14px; font-weight: 700; color: #94a3b8; text-transform: uppercase; margin-bottom: 15px; cursor: pointer; display: flex; align-items: center; justify-content: space-between; }
+        .module-title:hover { color: #38bdf8; }
+        .lesson-list { list-style: none; display: none; margin-top: 10px; }
         .lesson-list.active { display: block; }
-        .lesson-item { padding: 8px 0; font-size: 14px; cursor: pointer; transition: 0.3s; }
-        .lesson-item:hover { color: #3498db; }
-        .video-container { width: 100%; aspect-ratio: 16/9; background: #000; border-radius: 10px; margin-bottom: 30px; display: flex; align-items: center; justify-content: center; color: white; font-size: 24px; }
-        .content-area { background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-        .btn { display: inline-block; padding: 10px 20px; background: #3498db; color: white; border-radius: 5px; text-decoration: none; margin-top: 20px; }
-        h1 { margin-bottom: 20px; color: #2c3e50; }
-        p { margin-bottom: 15px; }
+        .lesson-item { padding: 12px 15px; font-size: 15px; color: #cbd5e1; cursor: pointer; border-radius: 8px; transition: 0.2s; margin-bottom: 5px; }
+        .lesson-item:hover { background: #334155; color: #38bdf8; }
+        .lesson-item.active { background: #0ea5e9; color: white; font-weight: 600; }
+        .content-card { background: #1e293b; padding: 40px; border-radius: 16px; border: 1px solid #334155; box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
+        .video-placeholder { width: 100%; aspect-ratio: 16/9; background: linear-gradient(135deg, #334155 0%, #0f172a 100%); border-radius: 12px; margin-bottom: 35px; display: flex; align-items: center; justify-content: center; border: 2px dashed #475569; position: relative; }
+        .video-placeholder::after { content: "▶"; font-size: 60px; color: #38bdf8; opacity: 0.8; }
+        h1 { font-size: 32px; font-weight: 800; color: white; margin-bottom: 25px; letter-spacing: -0.5px; }
+        h2 { font-size: 22px; color: #38bdf8; margin: 30px 0 15px; }
+        p { margin-bottom: 20px; font-size: 17px; color: #94a3b8; }
+        .prompt-box { background: #0f172a; padding: 20px; border-radius: 10px; border-left: 4px solid #38bdf8; font-family: 'Fira Code', monospace; font-size: 14px; color: #7dd3fc; margin: 20px 0; position: relative; cursor: pointer; }
+        .prompt-box::before { content: "PROMPT:"; display: block; font-size: 10px; font-weight: bold; margin-bottom: 10px; color: #38bdf8; opacity: 0.6; }
+        .btn { display: inline-flex; align-items: center; padding: 12px 24px; background: #0ea5e9; color: white; border-radius: 8px; text-decoration: none; font-weight: 600; transition: 0.2s; border: none; cursor: pointer; }
+        .btn:hover { background: #0284c7; transform: translateY(-1px); }
+        .badge { display: inline-block; padding: 4px 10px; background: #064e3b; color: #34d399; border-radius: 4px; font-size: 12px; font-weight: bold; margin-bottom: 15px; }
+        .step { display: flex; align-items: flex-start; margin-bottom: 25px; }
+        .step-num { width: 32px; height: 32px; background: #38bdf8; color: #0f172a; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900; margin-right: 20px; flex-shrink: 0; margin-top: 4px; }
+        .step-content { flex: 1; }
+        .step-title { font-weight: 700; color: white; font-size: 18px; margin-bottom: 8px; }
     </style>
 </head>
 <body>
     <div class="sidebar">
-        <h2 style="margin-bottom:30px;">RENDA-PRO IA</h2>
+        <div class="logo">RENDA-PRO IA</div>
         <div class="module">
-            <div class="module-title" onclick="toggleLessons(this)">📂 Módulo 1: Introdução</div>
+            <div class="module-title" onclick="toggleLessons(this)">🚀 Módulo 1: Primeiros Passos <span>▾</span></div>
             <ul class="lesson-list active">
-                <li class="lesson-item" onclick="loadContent('intro')">Seja bem-vindo ao Renda-Pro</li>
-                <li class="lesson-item" onclick="loadContent('mindset')">O Mindset da IA</li>
+                <li class="lesson-item active" onclick="loadContent('welcome')">Boas-vindas e Introdução</li>
+                <li class="lesson-item" onclick="loadContent('mindset')">A Revolução da IA</li>
+                <li class="lesson-item" onclick="loadContent('tools')">As Ferramentas de Ouro</li>
             </ul>
         </div>
         <div class="module">
-            <div class="module-title" onclick="toggleLessons(this)">📂 Módulo 2: Ferramentas</div>
+            <div class="module-title" onclick="toggleLessons(this)">💰 Módulo 2: Estratégias de Ganho <span>▾</span></div>
             <ul class="lesson-list">
-                <li class="lesson-item" onclick="loadContent('chatgpt')">Dominando o ChatGPT</li>
-                <li class="lesson-item" onclick="loadContent('midjourney')">Criação de Imagens com IA</li>
+                <li class="lesson-item" onclick="loadContent('copywriting')">Serviços de Copywriting IA</li>
+                <li class="lesson-item" onclick="loadContent('images')">Criação de Logos e Criativos</li>
+                <li class="lesson-item" onclick="loadContent('automations')">Automações para Empresas</li>
             </ul>
         </div>
         <div class="module">
-            <div class="module-title" onclick="toggleLessons(this)">📂 Módulo 3: Monetização</div>
+            <div class="module-title" onclick="toggleLessons(this)">⚡ Módulo 3: Escala Prática <span>▾</span></div>
             <ul class="lesson-list">
-                <li class="lesson-item" onclick="loadContent('freelance')">Venda de Serviços de IA</li>
-                <li class="lesson-item" onclick="loadContent('infoprodutos')">Criando Infoprodutos com IA</li>
+                <li class="lesson-item" onclick="loadContent('freelancing')">Mastering Freelancing</li>
+                <li class="lesson-item" onclick="loadContent('infoproducts')">Criando sua Esteira</li>
             </ul>
         </div>
     </div>
 
     <div class="main-content">
         <div id="lesson-content">
-            <h1>Seja bem-vindo ao Renda-Pro IA!</h1>
-            <div class="video-container">
-                🎥 Vídeo de Boas-vindas
-            </div>
-            <div class="content-area">
-                <p>Nesta primeira aula, você vai entender como o mercado de IA está mudando o mundo e como você pode se posicionar para faturar com isso.</p>
-                <p>Baixe o material de apoio abaixo para começar seus estudos.</p>
-                <a href="#" class="btn">📥 Baixar PDF do Guia</a>
+            <!-- Initial content (Welcome) -->
+            <span class="badge">CONCLUÍDO</span>
+            <h1>Bem-vindo à sua nova realidade financeira!</h1>
+            <div class="video-placeholder"></div>
+            <div class="content-card">
+                <p>Parabéns por investir em você! O Renda-Pro IA não é apenas um guia, é o seu passaporte para o mercado mais lucrativo da atualidade. A partir de agora, você deixará de ser apenas um espectador para se tornar um <strong>Operador de IA Profissional</strong>.</p>
+                
+                <h2>Por onde começar?</h2>
+                <div class="step">
+                    <div class="step-num">1</div>
+                    <div class="step-content">
+                        <div class="step-title">Assista ao vídeo de boas-vindas</div>
+                        <p>Nele eu explico como tirar o máximo proveito do método e como fazer sua primeira venda em tempo recorde.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-num">2</div>
+                    <div class="step-content">
+                        <div class="step-title">Baixe o Guia Rápido</div>
+                        <p>Tenha em mãos o PDF com o resumo de todas as ferramentas e o cronograma de 7 dias para lucrar.</p>
+                    </div>
+                </div>
+                
+                <a href="#" class="btn">📥 Baixar Guia de 7 Dias (PDF)</a>
             </div>
         </div>
     </div>
@@ -69,14 +99,48 @@
             list.classList.toggle('active');
         }
 
-        function loadContent(lesson) {
-            const area = document.getElementById('lesson-content');
-            const contents = {
-                'intro': '<h1>Seja bem-vindo ao Renda-Pro IA!</h1><div class=\"video-container\">🎥 Vídeo de Boas-vindas</div><div class=\"content-area\"><p>Comece aqui sua jornada para a liberdade financeira com IA.</p></div>',
-                'chatgpt': '<h1>Dominando o ChatGPT</h1><div class=\"video-container\">🤖 Tutorial ChatGPT</div><div class=\"content-area\"><p>Aprenda a criar os melhores prompts para resultados profissionais.</p></div>',
-                'infoprodutos': '<h1>Criando Infoprodutos com IA</h1><div class=\"video-container\">🚀 Estratégia de Infoprodutos</div><div class=\"content-area\"><p>Como criar um produto digital do zero usando ferramentas de IA em menos de 24 horas.</p></div>'
-            };
-            if(contents[lesson]) area.innerHTML = contents[lesson];
+        const lessonContents = {
+            'welcome': `
+                <span class="badge">CONCLUÍDO</span>
+                <h1>Bem-vindo à sua nova realidade financeira!</h1>
+                <div class="video-placeholder"></div>
+                <div class="content-card">
+                    <p>Parabéns por investir em você! O Renda-Pro IA é o seu passaporte para o mercado mais lucrativo da atualidade.</p>
+                    <h2>O Método Renda-Pro</h2>
+                    <p>Aqui você vai aprender a usar o poder da Inteligência Artificial para substituir 10 funcionários e faturar sozinho.</p>
+                </div>
+            `,
+            'tools': `
+                <h1>As Ferramentas de Ouro</h1>
+                <div class="content-card">
+                    <p>Para faturar com IA, você precisa das ferramentas certas. Aqui estão as 4 que mais geram lucro hoje:</p>
+                    <div class="step"><div class="step-num">1</div><div class="step-content"><div class="step-title">ChatGPT (OpenAI)</div><p>Sua central de texto, estratégia e código.</p></div></div>
+                    <div class="step"><div class="step-num">2</div><div class="step-content"><div class="step-title">Midjourney / Leonardo.ai</div><p>Criação de imagens ultra-realistas para marcas.</p></div></div>
+                    <div class="step"><div class="step-num">3</div><div class="step-content"><div class="step-title">ElevenLabs</div><p>Vozes sintéticas humanas para vídeos e comerciais.</p></div></div>
+                </div>
+            `,
+            'copywriting': `
+                <h1>Masterizando Copywriting com IA</h1>
+                <div class="content-card">
+                    <p>Copywriting é a habilidade de imprimir dinheiro. Use este prompt para criar uma página de vendas completa:</p>
+                    <div class="prompt-box">
+                        Atue como um copywriter expert em conversão. Escreva uma página de vendas seguindo o modelo AIDA para um produto de [INSERIR NICHO]. Use gatilhos de prova social e escassez.
+                    </div>
+                    <p><strong>Dica:</strong> Você pode cobrar de R$ 300 a R$ 1.500 por uma única copy de alta conversão usando o ChatGPT como base.</p>
+                </div>
+            `
+        };
+
+        function loadContent(lessonId) {
+            const container = document.getElementById('lesson-content');
+            if (lessonContents[lessonId]) {
+                container.innerHTML = lessonContents[lessonId];
+                
+                // Update active state in sidebar
+                document.querySelectorAll('.lesson-item').forEach(el => el.classList.remove('active'));
+                const activeItem = Array.from(document.querySelectorAll('.lesson-item')).find(el => el.textContent.includes(lessonId) || el.onclick.toString().includes(lessonId));
+                if (activeItem) activeItem.classList.add('active');
+            }
         }
     </script>
 </body>

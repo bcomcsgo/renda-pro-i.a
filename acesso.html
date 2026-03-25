@@ -18,130 +18,131 @@
         .lesson-item { padding: 12px 15px; font-size: 15px; color: #cbd5e1; cursor: pointer; border-radius: 8px; transition: 0.2s; margin-bottom: 5px; }
         .lesson-item:hover { background: #334155; color: #38bdf8; }
         .lesson-item.active { background: #0ea5e9; color: white; font-weight: 600; }
-        .content-card { background: #1e293b; padding: 40px; border-radius: 16px; border: 1px solid #334155; box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
-        .video-placeholder { width: 100%; aspect-ratio: 16/9; background: linear-gradient(135deg, #334155 0%, #0f172a 100%); border-radius: 12px; margin-bottom: 35px; display: flex; align-items: center; justify-content: center; border: 2px dashed #475569; position: relative; }
-        .video-placeholder::after { content: "▶"; font-size: 60px; color: #38bdf8; opacity: 0.8; }
+        .content-card { background: #1e293b; padding: 40px; border-radius: 16px; border: 1px solid #334155; box-shadow: 0 10px 25px rgba(0,0,0,0.2); margin-bottom: 30px; }
         h1 { font-size: 32px; font-weight: 800; color: white; margin-bottom: 25px; letter-spacing: -0.5px; }
         h2 { font-size: 22px; color: #38bdf8; margin: 30px 0 15px; }
-        p { margin-bottom: 20px; font-size: 17px; color: #94a3b8; }
-        .prompt-box { background: #0f172a; padding: 20px; border-radius: 10px; border-left: 4px solid #38bdf8; font-family: 'Fira Code', monospace; font-size: 14px; color: #7dd3fc; margin: 20px 0; position: relative; cursor: pointer; }
-        .prompt-box::before { content: "PROMPT:"; display: block; font-size: 10px; font-weight: bold; margin-bottom: 10px; color: #38bdf8; opacity: 0.6; }
-        .btn { display: inline-flex; align-items: center; padding: 12px 24px; background: #0ea5e9; color: white; border-radius: 8px; text-decoration: none; font-weight: 600; transition: 0.2s; border: none; cursor: pointer; }
+        h3 { font-size: 18px; color: white; margin-bottom: 10px; font-weight: 700; }
+        p { margin-bottom: 20px; font-size: 17px; color: #cbd5e1; }
+        .prompt-box { background: #0f172a; padding: 20px; border-radius: 10px; border-left: 4px solid #38bdf8; font-family: 'Fira Code', monospace; font-size: 14px; color: #7dd3fc; margin: 20px 0; position: relative; }
+        .prompt-box::before { content: "PROMPT PARA COPIAR:"; display: block; font-size: 10px; font-weight: bold; margin-bottom: 10px; color: #38bdf8; opacity: 0.6; }
+        .btn { display: inline-flex; align-items: center; padding: 12px 24px; background: #0ea5e9; color: white; border-radius: 8px; text-decoration: none; font-weight: 600; transition: 0.2s; border: none; cursor: pointer; margin-top: 10px; }
         .btn:hover { background: #0284c7; transform: translateY(-1px); }
         .badge { display: inline-block; padding: 4px 10px; background: #064e3b; color: #34d399; border-radius: 4px; font-size: 12px; font-weight: bold; margin-bottom: 15px; }
-        .step { display: flex; align-items: flex-start; margin-bottom: 25px; }
-        .step-num { width: 32px; height: 32px; background: #38bdf8; color: #0f172a; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900; margin-right: 20px; flex-shrink: 0; margin-top: 4px; }
-        .step-content { flex: 1; }
-        .step-title { font-weight: 700; color: white; font-size: 18px; margin-bottom: 8px; }
+        .resource-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px; }
+        .resource-item { background: #0f172a; padding: 20px; border-radius: 12px; border: 1px solid #334155; }
     </style>
 </head>
 <body>
-    <div class="sidebar">
-        <div class="logo">RENDA-PRO IA</div>
-        <div class="module">
-            <div class="module-title" onclick="toggleLessons(this)">🚀 Módulo 1: Primeiros Passos <span>▾</span></div>
-            <ul class="lesson-list active">
-                <li class="lesson-item active" onclick="loadContent('welcome')">Boas-vindas e Introdução</li>
-                <li class="lesson-item" onclick="loadContent('mindset')">A Revolução da IA</li>
-                <li class="lesson-item" onclick="loadContent('tools')">As Ferramentas de Ouro</li>
-            </ul>
-        </div>
-        <div class="module">
-            <div class="module-title" onclick="toggleLessons(this)">💰 Módulo 2: Estratégias de Ganho <span>▾</span></div>
-            <ul class="lesson-list">
-                <li class="lesson-item" onclick="loadContent('copywriting')">Serviços de Copywriting IA</li>
-                <li class="lesson-item" onclick="loadContent('images')">Criação de Logos e Criativos</li>
-                <li class="lesson-item" onclick="loadContent('automations')">Automações para Empresas</li>
-            </ul>
-        </div>
-        <div class="module">
-            <div class="module-title" onclick="toggleLessons(this)">⚡ Módulo 3: Escala Prática <span>▾</span></div>
-            <ul class="lesson-list">
-                <li class="lesson-item" onclick="loadContent('freelancing')">Mastering Freelancing</li>
-                <li class="lesson-item" onclick="loadContent('infoproducts')">Criando sua Esteira</li>
-            </ul>
-        </div>
-    </div>
 
-    <div class="main-content">
-        <div id="lesson-content">
-            <!-- Initial content (Welcome) -->
-            <span class="badge">CONCLUÍDO</span>
-            <h1>Bem-vindo à sua nova realidade financeira!</h1>
-            <div class="video-placeholder"></div>
-            <div class="content-card">
-                <p>Parabéns por investir em você! O Renda-Pro IA não é apenas um guia, é o seu passaporte para o mercado mais lucrativo da atualidade. A partir de agora, você deixará de ser apenas um espectador para se tornar um <strong>Operador de IA Profissional</strong>.</p>
-                
-                <h2>Por onde começar?</h2>
-                <div class="step">
-                    <div class="step-num">1</div>
-                    <div class="step-content">
-                        <div class="step-title">Assista ao vídeo de boas-vindas</div>
-                        <p>Nele eu explico como tirar o máximo proveito do método e como fazer sua primeira venda em tempo recorde.</p>
-                    </div>
-                </div>
-                <div class="step">
-                    <div class="step-num">2</div>
-                    <div class="step-content">
-                        <div class="step-title">Baixe o Guia Rápido</div>
-                        <p>Tenha em mãos o PDF com o resumo de todas as ferramentas e o cronograma de 7 dias para lucrar.</p>
-                    </div>
-                </div>
-                
-                <a href="#" class="btn">📥 Baixar Guia de 7 Dias (PDF)</a>
+<div class="sidebar">
+    <div class="logo">RENDA-PRO IA</div>
+    <div class="module">
+        <div class="module-title" onclick="toggleLessons(this)">🚀 Módulo 1: Fundamentos <span style="font-size: 10px;">▼</span></div>
+        <ul class="lesson-list active">
+            <li class="lesson-item active" onclick="loadContent('welcome')">O Caminho para o Lucro</li>
+            <li class="lesson-item" onclick="loadContent('tools')">Arsenal de IA 2026</li>
+        </ul>
+    </div>
+    <div class="module">
+        <div class="module-title" onclick="toggleLessons(this)">💰 Módulo 2: Planos de Ação <span style="font-size: 10px;">▼</span></div>
+        <ul class="lesson-list">
+            <li class="lesson-item" onclick="loadContent('copywriting')">Estratégia de Copywriting</li>
+            <li class="lesson-item" onclick="loadContent('marketing')">Marketing e Vendas</li>
+        </ul>
+    </div>
+</div>
+
+<div class="main-content">
+    <div id="lesson-content">
+        <span class="badge">CURSO COMPLETO</span>
+        <h1>Seu Plano de Ação Renda-Pro IA</h1>
+        
+        <div class="content-card">
+            <h2>Bem-vindo à Prática</h2>
+            <p>Este não é apenas um guia, é um sistema testado. Abaixo você encontrará o roteiro exato para configurar suas primeiras fontes de renda com Inteligência Artificial em até 72 horas.</p>
+            
+            <h3>Passo 1: A Mentalidade do Operador</h3>
+            <p>Esqueça a teoria. IA é sobre saber perguntar. O mercado paga caro por quem domina a engenharia de prompts. Você aprenderá a delegar 90% do seu trabalho para as máquinas.</p>
+            
+            <div class="prompt-box">
+                "Você é um estrategista de negócios digital. Analise o nicho de [SEU NICHO] e crie um plano de 30 dias para lançamento de um produto digital low-ticket, incluindo temas de posts, anúncios e estrutura de página de vendas."
             </div>
         </div>
+
+        <div class="content-card">
+            <h3>As 5 Melhores Ferramentas (Gratuitas e Pagas)</h3>
+            <div class="resource-grid">
+                <div class="resource-item">
+                    <h3>ChatGPT-4o / Claude 3.5</h3>
+                    <p>Cérebro para estratégia, texto e análise de dados.</p>
+                </div>
+                <div class="resource-item">
+                    <h3>Leonardo.ai</h3>
+                    <p>A melhor para criar artes, logos e criativos de anúncios.</p>
+                </div>
+                <div class="resource-item">
+                    <h3>ElevenLabs</h3>
+                    <p>Vozes ultra-realistas para narrativas de vendas.</p>
+                </div>
+                <div class="resource-item">
+                    <h3>Gamma.app</h3>
+                    <p>Cria apresentações e sites completos em segundos.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-card">
+            <h2>Plano de 7 Dias para a Primeira Venda</h2>
+            <p>Siga esta ordem cronológica para ver resultados reais:</p>
+            <p><strong>Dia 1-2:</strong> Escolha do Nicho e Definição da Oferta Irresistível.</p>
+            <p><strong>Dia 3-4:</strong> Criação do Produto e Landing Page (usando as ferramentas acima).</p>
+            <p><strong>Dia 5:</strong> Configuração do Tráfego Pago (Facebook Ads/Google Ads).</p>
+            <p><strong>Dia 6-7:</strong> Otimização e Escala das Vendas.</p>
+            
+            <a href="#" class="btn">📥 Baixar PDF: Guia Passo a Passo Completo</a>
+        </div>
     </div>
+</div>
 
-    <script>
-        function toggleLessons(element) {
-            const list = element.nextElementSibling;
-            list.classList.toggle('active');
+<script>
+    function toggleLessons(element) {
+        const list = element.nextElementSibling;
+        list.classList.toggle('active');
+    }
+    
+    const lessonContents = {
+        'welcome': `
+            <span class="badge">ATIVO</span>
+            <h1>O Caminho para o Lucro com IA</h1>
+            <div class="content-card">
+                <p>Nesta lição, você aprenderá a estrutura base de qualquer negócio digital lucrativo usando IA. O segredo não está na ferramenta, mas no processo.</p>
+                <h2>A Estrutura V.O.A (Venda, Operação, Automação)</h2>
+                <p><strong>Venda:</strong> Como usar IA para atrair o cliente certo.</p>
+                <p><strong>Operação:</strong> Como entregar o serviço/produto sem gastar horas.</p>
+                <p><strong>Automação:</strong> Como fazer o sistema rodar sozinho.</p>
+            </div>
+        `,
+        'tools': `
+            <h1>Arsenal de IA 2026</h1>
+            <div class="content-card">
+                <p>Lista atualizada das ferramentas que realmente funcionam para ganhar dinheiro online.</p>
+                <div class="prompt-box">
+                    Acesse: chat.openai.com | claude.ai | leonardo.ai | elevenlabs.io
+                </div>
+            </div>
+        `
+    };
+
+    function loadContent(lessonId) {
+        const container = document.getElementById('lesson-content');
+        if (lessonContents[lessonId]) {
+            container.innerHTML = lessonContents[lessonId];
+            document.querySelectorAll('.lesson-item').forEach(el => el.classList.remove('active'));
+            const activeItem = Array.from(document.querySelectorAll('.lesson-item')).find(el => el.onclick.toString().includes(lessonId));
+            if (activeItem) activeItem.classList.add('active');
         }
+    }
+</script>
 
-        const lessonContents = {
-            'welcome': `
-                <span class="badge">CONCLUÍDO</span>
-                <h1>Bem-vindo à sua nova realidade financeira!</h1>
-                <div class="video-placeholder"></div>
-                <div class="content-card">
-                    <p>Parabéns por investir em você! O Renda-Pro IA é o seu passaporte para o mercado mais lucrativo da atualidade.</p>
-                    <h2>O Método Renda-Pro</h2>
-                    <p>Aqui você vai aprender a usar o poder da Inteligência Artificial para substituir 10 funcionários e faturar sozinho.</p>
-                </div>
-            `,
-            'tools': `
-                <h1>As Ferramentas de Ouro</h1>
-                <div class="content-card">
-                    <p>Para faturar com IA, você precisa das ferramentas certas. Aqui estão as 4 que mais geram lucro hoje:</p>
-                    <div class="step"><div class="step-num">1</div><div class="step-content"><div class="step-title">ChatGPT (OpenAI)</div><p>Sua central de texto, estratégia e código.</p></div></div>
-                    <div class="step"><div class="step-num">2</div><div class="step-content"><div class="step-title">Midjourney / Leonardo.ai</div><p>Criação de imagens ultra-realistas para marcas.</p></div></div>
-                    <div class="step"><div class="step-num">3</div><div class="step-content"><div class="step-title">ElevenLabs</div><p>Vozes sintéticas humanas para vídeos e comerciais.</p></div></div>
-                </div>
-            `,
-            'copywriting': `
-                <h1>Masterizando Copywriting com IA</h1>
-                <div class="content-card">
-                    <p>Copywriting é a habilidade de imprimir dinheiro. Use este prompt para criar uma página de vendas completa:</p>
-                    <div class="prompt-box">
-                        Atue como um copywriter expert em conversão. Escreva uma página de vendas seguindo o modelo AIDA para um produto de [INSERIR NICHO]. Use gatilhos de prova social e escassez.
-                    </div>
-                    <p><strong>Dica:</strong> Você pode cobrar de R$ 300 a R$ 1.500 por uma única copy de alta conversão usando o ChatGPT como base.</p>
-                </div>
-            `
-        };
-
-        function loadContent(lessonId) {
-            const container = document.getElementById('lesson-content');
-            if (lessonContents[lessonId]) {
-                container.innerHTML = lessonContents[lessonId];
-                
-                // Update active state in sidebar
-                document.querySelectorAll('.lesson-item').forEach(el => el.classList.remove('active'));
-                const activeItem = Array.from(document.querySelectorAll('.lesson-item')).find(el => el.textContent.includes(lessonId) || el.onclick.toString().includes(lessonId));
-                if (activeItem) activeItem.classList.add('active');
-            }
-        }
-    </script>
 </body>
 </html>
